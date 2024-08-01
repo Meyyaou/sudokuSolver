@@ -1,10 +1,12 @@
 #include "sudoku.h"
-
 //to store the values from the puzzle
 Square *** setUpPuzzle(int ** puzzle){
 	Square *** sudoku;
+	Box ** boxes;
+	int curBox=0;
 	int i, j, x;
 	sudoku= (Square***)malloc(sizeof(Square**)*9);
+	boxes=createBoxes();
 	//loop through rows
 	for (i = 0; i<SIZE_ROWS; i++){
 		sudoku[i]= (Square**)malloc(sizeof(Square*)*9);
@@ -13,7 +15,10 @@ Square *** setUpPuzzle(int ** puzzle){
 		for (j = 0; j <SIZE_COLS;j++){
 			sudoku[i][j]= (Square*)malloc(sizeof(Square)*9);
 			sudoku[i][j]->value=puzzle[i][j];
+			boxes[curBox]->squares[boxes[curBox]->nums]=sudoku[i][j];
+			boxes[curBox]->nums++;
 			
+			sudoku[i][j]->box=boxes[curBox];
 			//assign rows and cols
 			sudoku[i][j]->row=i;
 			sudoku[i][j]->col=j;
@@ -23,6 +28,16 @@ Square *** setUpPuzzle(int ** puzzle){
 				sudoku[i][j]->possible[x]=0;
 				
 			}
+			if(j==2 || j==5){
+				curBox++;
+			}
+			
+		}
+		curBox-=2;
+		if(i==2)
+			curBox=3;
+		if(i==5)
+			curBox=6;
 		}
 	}
 	
@@ -35,6 +50,7 @@ Square *** setUpPuzzle(int ** puzzle){
 		if (sudoku[i][j]->value!=0){
 			sudoku[i][j]-> solvable= 0;
 			updateSudoku(sudoku, i,j );
+			updateBoxes(sudoku, i, j);
 			UNSOLVED--;
 		}
 		}

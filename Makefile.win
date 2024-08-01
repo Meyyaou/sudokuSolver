@@ -1,0 +1,37 @@
+# Project: Project4
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = puzzle.o sudoku.o square.o box.o
+LINKOBJ  = puzzle.o sudoku.o square.o box.o
+LIBS     = -L"C:/Users/ZY LAPTOP/Downloads/Dev-Cpp/MinGW64/lib" -L"C:/Users/ZY LAPTOP/Downloads/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
+INCS     = -I"C:/Users/ZY LAPTOP/Downloads/Dev-Cpp/MinGW64/include" -I"C:/Users/ZY LAPTOP/Downloads/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Users/ZY LAPTOP/Downloads/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Users/ZY LAPTOP/Downloads/Dev-Cpp/MinGW64/include" -I"C:/Users/ZY LAPTOP/Downloads/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Users/ZY LAPTOP/Downloads/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Users/ZY LAPTOP/Downloads/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = sudoku.exe
+CXXFLAGS = $(CXXINCS) 
+CFLAGS   = $(INCS) 
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+puzzle.o: puzzle.c
+	$(CPP) -c puzzle.c -o puzzle.o $(CXXFLAGS)
+
+sudoku.o: sudoku.c
+	$(CPP) -c sudoku.c -o sudoku.o $(CXXFLAGS)
+
+square.o: square.c
+	$(CPP) -c square.c -o square.o $(CXXFLAGS)
+
+box.o: box.c
+	$(CPP) -c box.c -o box.o $(CXXFLAGS)
