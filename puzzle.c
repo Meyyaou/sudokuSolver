@@ -1,4 +1,6 @@
 #include "sudoku.h"
+
+
 //to store the values from the puzzle
 Square *** setUpPuzzle(int ** puzzle){
 	Square *** sudoku;
@@ -28,7 +30,10 @@ Square *** setUpPuzzle(int ** puzzle){
 				sudoku[i][j]->possible[x]=0;
 				
 			}
-			if(j==2 || j==5){
+			if(j==2){
+				curBox++;
+			}
+			if(j==5){
 				curBox++;
 			}
 			
@@ -39,7 +44,7 @@ Square *** setUpPuzzle(int ** puzzle){
 		if(i==5)
 			curBox=6;
 		}
-	}
+	
 	
 		//loop through rows
 		for (i = 0; i<SIZE_ROWS; i++){
@@ -57,6 +62,7 @@ Square *** setUpPuzzle(int ** puzzle){
 }
 return sudoku;
 }
+
 
 
 

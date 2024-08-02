@@ -6,7 +6,7 @@ Box ** createBoxes(){
 	int x,y;
 	
 	boxes = malloc(sizeof(Box*)*9);
-	for (x= 0; x<9; <++){
+	for (x= 0; x<9; x++){
 		boxes[x]=malloc(sizeof(Box));
 		boxes[x]->squares=malloc(sizeof(Square*)*9);
 		boxes[x]->nums= 0;
