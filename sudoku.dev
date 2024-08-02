@@ -24,12 +24,12 @@ HostApplication=
 UseCustomMakefile=0
 CustomMakefile=
 CommandLine=
-Folders=
+Folders=include,src
 IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000000
-UnitCount=4
+UnitCount=5
 
 [VersionInfo]
 Major=1
@@ -53,7 +53,7 @@ SyncProduct=1
 [Unit4]
 FileName=square.c
 CompileCpp=1
-Folder=
+Folder=src
 Compile=1
 Link=1
 Priority=1000
@@ -63,7 +63,7 @@ BuildCmd=
 [Unit1]
 FileName=puzzle.c
 CompileCpp=1
-Folder=
+Folder=src
 Compile=1
 Link=1
 Priority=1000
@@ -73,7 +73,7 @@ BuildCmd=
 [Unit2]
 FileName=sudoku.c
 CompileCpp=1
-Folder=
+Folder=src
 Compile=1
 Link=1
 Priority=1000
@@ -83,7 +83,17 @@ BuildCmd=$(CPP) -c sudoku.c -o sudoku.o $(CXXFLAGS)
 [Unit3]
 FileName=sudoku.h
 CompileCpp=1
-Folder=
+Folder=include
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit5]
+FileName=box.c
+CompileCpp=1
+Folder=src
 Compile=1
 Link=1
 Priority=1000

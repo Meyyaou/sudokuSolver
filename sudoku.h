@@ -20,7 +20,7 @@ typedef struct Square
 {
 	int value;
 	//[0][0][0][0][1][0][1][0][0] bit nums par rapport aux possibilites: if 1=impo, 0=pos
-//	//[9][8][7][6][5][4][3][2][1] indexes 
+	//[9][8][7][6][5][4][3][2][1] indexes 
 	int possible[9];
 	int solvable;
 	Box * box;

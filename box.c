@@ -5,10 +5,10 @@ Box ** createBoxes(){
 	Box ** boxes;
 	int x,y;
 	
-	boxes = malloc(sizeof(Box*)*9);
+	boxes = (Box **)malloc(sizeof(Box*)*9);
 	for (x= 0; x<9; x++){
-		boxes[x]=malloc(sizeof(Box));
-		boxes[x]->squares=malloc(sizeof(Square*)*9);
+		boxes[x]=(Box *)malloc(sizeof(Box));
+		boxes[x]->squares=(Square **)malloc(sizeof(Square*)*9);
 		boxes[x]->nums= 0;
 		boxes[x]->solvable=9;
 	for (y=0; y<9; y++){
@@ -20,7 +20,7 @@ Box ** createBoxes(){
 
 int updateBoxes(Square *** sudoku, int row, int col){
 	int x;
-	int num =sudoku[row][col];
+	int num =sudoku[row][col]->value;
 	Box * box;
 	box=sudoku[row][col]->box;
 	
