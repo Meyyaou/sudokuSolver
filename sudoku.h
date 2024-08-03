@@ -46,4 +46,6 @@ int solveSquare(Square * square);
 Box ** createBoxes();
 int updateBoxes(Square *** sudoku, int row, int col);
 int boxSingles(Square *** sudoku,Box ** boxes);
+
+int checkRows(Square *** sudoku, Box ** boxes);
 #endif
