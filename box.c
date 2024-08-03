@@ -1,5 +1,36 @@
 #include "sudoku.h"
-
+int boxSingles(Square *** sudoku,Box ** boxes){
+	int i, k,j,c,pos;
+	
+	//loop through boxes
+	for (i=0; i<9; i++){
+		//loop through possible array
+		for (j=0; j<9; j++){
+			c=0;
+			//loop through squares
+			for (k=0; k<9; k++){
+				if(boxes[i]->squares[k]->value!=0)
+					continue;
+				if(boxes[i]->squares[k]->possible[j]==0){
+					c++;
+					pos=k;
+			}
+				if(c==2)
+					break;
+				
+			}
+			if (c==1){//definitely solvable (1 solution)
+				boxes[i]->squares[pos]->value=j+1;
+				UNSOLVED--;
+				boxes[i]->squares[pos]->solvable=0;
+				updateSudoku(sudoku,boxes[i]->squares[pos]->row ,boxes[i]->squares[pos]->col );
+			return 1;
+			}
+			
+		}
+	}
+	return 0;
+}
 Box ** createBoxes(){
 	
 	Box ** boxes;
@@ -31,3 +62,5 @@ int updateBoxes(Square *** sudoku, int row, int col){
 		}
 	}
 }
+
+

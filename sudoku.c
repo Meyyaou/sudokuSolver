@@ -7,28 +7,21 @@ int SIZE_COLS=9;
 int main(){
 	printf("hello");
 	int ** puzzle;
-	Square *** sudoku;
+	Sudoku * sudoku;
+	int progress;
 	
 	puzzle=createPuzzle();
 	sudoku= setUpPuzzle(puzzle);
-	printPuzzle(sudoku);
-	checkPuzzle(sudoku);
-/*  checkPuzzle(sudoku);
-
-    checkPuzzle(sudoku);
-
-    checkPuzzle(sudoku);
-
-    checkPuzzle(sudoku);
-
-    checkPuzzle(sudoku);
-
-    checkPuzzle(sudoku);
-
-    checkPuzzle(sudoku);
-
-    checkPuzzle(sudoku);*/
+	printPuzzle(sudoku->squares);
+	//checkpuzzle while sudoku->squares[i]->possible==0
+	while(UNSOLVED>0){
+	    progress =checkPuzzle(sudoku->squares, sudoku->boxes);
+	if (progress==0){
+		printf("\nFailed to solve \n");
+		break;
+	}
+	}
 	printf("\nThe solution:\n");
-    printPuzzle(sudoku);
+    printPuzzle(sudoku->squares);
 	return 0;
 }

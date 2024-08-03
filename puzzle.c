@@ -1,8 +1,16 @@
 #include "sudoku.h"
 
-
+Sudoku * createSudoku(Square *** squares, Box ** boxes){
+	Sudoku * sudoku;
+	sudoku=(Sudoku*)malloc(sizeof(Sudoku));
+	
+	sudoku->squares=squares;
+	sudoku->boxes=boxes;
+	
+	return sudoku;
+}
 //to store the values from the puzzle
-Square *** setUpPuzzle(int ** puzzle){
+Sudoku * setUpPuzzle(int ** puzzle){
 	Square *** sudoku;
 	Box ** boxes;
 	int curBox=0;
@@ -60,7 +68,7 @@ Square *** setUpPuzzle(int ** puzzle){
 		}
 		}
 }
-return sudoku;
+return createSudoku(sudoku, boxes);
 }
 
 
@@ -89,7 +97,7 @@ int updateSudoku(Square *** sudoku, int row, int col){
 }
 
 
-int checkPuzzle(Square *** sudoku){
+int checkPuzzle(Square *** sudoku, Box ** boxes){
 	int i, j;
 	
 	//loop through rows
@@ -100,11 +108,13 @@ int checkPuzzle(Square *** sudoku){
 		if (sudoku[i][j]->solvable==1){
 			solveSquare(sudoku[i][j]);
 			updateSudoku(sudoku, i, j);
+			updateBoxes(sudoku, i, j);
+			return 1;
 		}
 		}
 		
 		}
-		return 1;
+	return boxSingles(sudoku, boxes);
 }
 
 int ** createPuzzle(){
